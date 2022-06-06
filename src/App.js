@@ -5,12 +5,13 @@ import 'bootstrap/dist/js/bootstrap';
 import { getCardsData } from "./api/api";
 import { Filters } from './components/Filters/Filters';
 import { Cards } from './components/Cards/Cards';
+import { Pagination } from './components/Pagination/Pagination';
 
 
 const App = () => {
   let [pageNumber, setPageNumber] = useState(1);
   let [fetchedData, setFetchedData] = useState([]);
-
+  console.log(pageNumber)
 
   useEffect(() => {
     async function response() {
@@ -50,6 +51,11 @@ const App = () => {
           </div>
         </div>
       </div>
+
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+      />
     </div>
   );
 }
