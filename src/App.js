@@ -60,6 +60,7 @@ const App = () => {
       </div>
 
       <Pagination
+        info={info}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />
