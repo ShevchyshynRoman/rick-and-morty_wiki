@@ -19,7 +19,7 @@ export const Pagination = ({ setPageNumber, pageNumber }) => {
       >
         Prev
       </button>
-
+        {pageNumber}
       <button
         className="btn btn-primary"
         onClick={next}

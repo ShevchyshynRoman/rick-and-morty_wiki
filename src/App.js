@@ -6,17 +6,18 @@ import { getCardsData } from "./api/api";
 import { Filters } from './components/Filters/Filters';
 import { Cards } from './components/Cards/Cards';
 import { Pagination } from './components/Pagination/Pagination';
+import { Search } from './components/Search/Search';
 
 
 const App = () => {
-  let [pageNumber, setPageNumber] = useState(1);
-  let [fetchedData, setFetchedData] = useState([]);
-  console.log(pageNumber)
+  const [pageNumber, setPageNumber] = useState(1);
+  const [fetchedData, setFetchedData] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     async function response() {
       try {
-        const data = await getCardsData(pageNumber);
+        const data = await getCardsData(pageNumber, search);
 
         setFetchedData(data);
       } catch {
@@ -25,7 +26,7 @@ const App = () => {
     }
 
     response();
-  }, [pageNumber])
+  }, [pageNumber, search])
 
   const { info, results } = fetchedData;
   return (
@@ -33,6 +34,12 @@ const App = () => {
       <h1 className="text-center my-4">
         Rick and Morty <span className="text-primary">WiKi</span>
       </h1>
+
+      <Search
+        search={search}
+        setSearch={setSearch}
+        setPageNumber={setPageNumber}
+      />
 
       <div className="container">
         <div className="row">
